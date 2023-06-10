@@ -19,3 +19,14 @@ def smoothstep(x):
 
 def lerp(v1, v2, t):
     return v1 + t * (v2 - v1)
+
+
+def merge(l1, l2, join):
+    if not isinstance(l1, (list, tuple)):
+        return join(l1, l2)
+    l = len(l1)
+    assert l == len(l2)
+    l3 = []
+    for e in range(l):
+        l3.append(merge(l1[e], l2[e], join))
+    return l3

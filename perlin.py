@@ -59,8 +59,8 @@ def perlin(rnd, cell_range, cell_size):
     return pixels
 
 
-CELL_RANGE = 4
-CELL_SIZE = 128
+CELL_RANGE = 8
+CELL_SIZE = 64
 SEED = 486758364563456
 if __name__ == "__main__":
     size = CELL_SIZE * CELL_RANGE
@@ -71,10 +71,16 @@ if __name__ == "__main__":
     for y in range(size):
         for x in range(size):
             p = m[y][x]
+            """
             r = 255 * p
             g = 128
             b = 255 - r / 4
-            screen.set_at((x, y), (r, r, r))
+            screen.set_at((x, y), (r, g, b))
+            """
+            if round(p*33) % 7 == 0:
+                screen.set_at((x, y), (255, 255, 255))
+
+
         pygame.display.flip()
 
     while True:
